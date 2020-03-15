@@ -164,9 +164,10 @@ def send_slack_message():
     req_data = request.get_json(force=True)
     vlan_id = req_data['vlan_id']
     vlan_name = req_data['vlan_name']
+    username = req_data['username']
     requests.packages.urllib3.disable_warnings()  # Ignore from requests module
     url = "https://hooks.slack.com/services/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"
-    payload = {"text": f"Hey User, VLAN {vlan_name} with ID {vlan_id} add to TS LAB"}
+    payload = {"text": f"Hey {username}, VLAN {vlan_name} with ID {vlan_id} add to TS LAB"}
     headers = {'Content-Type': "application/json"}
     response = requests.request("POST", url, data=json.dumps(payload), headers=headers, verify=False)
     return str(payload)
