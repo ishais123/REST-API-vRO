@@ -1,0 +1,3 @@
+nsxManager = vRO rest host https://nsx-mgmt01.terasky.local
+exists - string that say if vlan exists or not
+netApi - vRO rest host http://172.16.20.33 (my API server which listening to rest calls
