@@ -7,6 +7,25 @@ from flask import Flask, request, jsonify, make_response
 from flask_httpauth import HTTPBasicAuth
 import requests
 import json
+from netApi_secrets import devices
+
+# devices list
+devices = devices
+
+#                  Devices details                    #
+#######################################################
+cisco_host = devices.get('cisco').get('host')
+cisco_username = devices.get('cisco').get('username')
+cisco_password = devices.get('cisco').get('password')
+aruba_up_host = devices.get('aruba_up').get('host')
+aruba_down_host = devices.get('aruba_down').get('host')
+aruba_username = devices.get('aruba_up').get('username')
+
+aruba_password = devices.get('aruba_up').get('password')
+forti_host = devices.get('forti').get('host')
+forti_username = devices.get('forti').get('username')
+forti_password = devices.get('forti').get('password')
+#######################################################
 
 
 def connect(host, user, password, conf):
@@ -51,26 +70,6 @@ def not_found(error):
     return make_response(jsonify({'error': 'bad request'}), 400)
 #######################################################
 
-
-# devices list
-devices = {"cisco": {"host": "172.16.200.2", "username": "tsadmin", "password": "Bpovtmg1!"},
-           "aruba_up": {"host": "192.168.100.201", "username": "admin", "password": "abc123"},
-           "aruba_down": {"host": "192.168.100.200", "username": "admin", "password": "abc123"},
-           "forti": {"host": "172.16.20.1", "username": "terasky", "password": "bpovtm315"}}
-
-#                  Devices details                    #
-#######################################################
-cisco_host = devices.get('cisco').get('host')
-cisco_username = devices.get('cisco').get('username')
-cisco_password = devices.get('cisco').get('password')
-aruba_up_host = devices.get('aruba_up').get('host')
-aruba_down_host = devices.get('aruba_down').get('host')
-aruba_username = devices.get('aruba_up').get('username')
-aruba_password = devices.get('aruba_up').get('password')
-forti_host = devices.get('forti').get('host')
-forti_username = devices.get('forti').get('username')
-forti_password = devices.get('forti').get('password')
-#######################################################
 
 # Cisco calls
 @app.route('/cisco/api/v1.0/vlan', methods=['POST'])
